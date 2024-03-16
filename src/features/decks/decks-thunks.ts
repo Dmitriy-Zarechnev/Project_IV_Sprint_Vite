@@ -11,7 +11,7 @@ export const getDecksTC = () => async (dispatch: AppDispatch) => {
     // ----- Запросили decks с сервера ------
     const getDecksData = await decksAPI.getDecks()
 
-    // ----- Задиспатчили decks полученные от сервера в getDecksData ------
+    // ----- Задиспатчили getDecksData полученные от сервера ------
     dispatch(setDecksAC(getDecksData.items))
   } catch (error) {
     // ----- Поймали и вывели в console ошибку ------
@@ -25,7 +25,7 @@ export const createDeckTC = (name: string) => async (dispatch: AppDispatch) => {
     // ----- Отправили deck с name на сервер ------
     const createDecksData = await decksAPI.createDeck(name)
 
-    // ----- Задиспатчили deck после ответа от сервера в createDecksData ------
+    // ----- Задиспатчили createDecksData после ответа от сервера ------
     dispatch(createDeckAC(createDecksData))
   } catch (error) {
     // ----- Поймали и вывели в console ошибку ------

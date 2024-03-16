@@ -4,7 +4,6 @@ import { useAppDispatch } from '../../../app/store.ts'
 import { createDeckTC } from '../decks-thunks.ts'
 
 
-
 type FormValues = {
   name: string
 }
@@ -13,6 +12,8 @@ export const AddNewDeckForm = () => {
 
   // ----- Используем кастомный useAppDispatch ------
   const dispatch = useAppDispatch()
+
+  // ----- Используем и деструктурируем хук useForm из 'react-hook-form' ------
   const {
     register,
     handleSubmit,
@@ -24,13 +25,13 @@ export const AddNewDeckForm = () => {
     },
   })
 
+  // ----- onSubmit содержит data из всех форм, после выполнения submit ------
   const onSubmit = (data: FormValues) => {
     console.log(data)
     // Задиспатчили data из формы и в случае успеха, очистили форму
     dispatch(createDeckTC(data.name)).then(() => {
       reset()
     })
-
   }
 
   return (

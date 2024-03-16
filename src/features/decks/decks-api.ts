@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// ----- Типизация Get запроса ------
+// ----- Типизация запроса ------
 export type SwaggerGetResponseType = {
   items: Array<ItemsResponseType>,
   pagination: PaginationResponseType
