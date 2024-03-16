@@ -1,12 +1,14 @@
 import s from './DeckItem.module.css'
+import { memo } from 'react'
+import { ItemsResponseType } from '../../decks-api.ts'
 
 type DeckProps = {
-  deck: any // todo: fix
+  deck: ItemsResponseType
 }
 
-const TEST_ACC_NAME = 'kukus'
+const TEST_ACC_NAME = 'Darth'
 
-export const DeckItem = ({ deck }: DeckProps) => {
+export const DeckItem = memo(({ deck }: DeckProps) => {
   const isTestingDeck = deck.author.name === TEST_ACC_NAME
 
   return (
@@ -33,4 +35,4 @@ export const DeckItem = ({ deck }: DeckProps) => {
       )}
     </li>
   )
-}
+})
