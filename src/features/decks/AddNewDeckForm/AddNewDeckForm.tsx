@@ -1,15 +1,23 @@
 import s from './AddNewPostForm.module.css'
 import { useForm } from 'react-hook-form'
+import { useAppDispatch } from '../../../app/store.ts'
+import { createDeckTC } from '../decks-thunks.ts'
+
+
 
 type FormValues = {
   name: string
 }
 
 export const AddNewDeckForm = () => {
+
+  // ----- Используем кастомный useAppDispatch ------
+  const dispatch = useAppDispatch()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormValues>({
     defaultValues: {
       name: '',
@@ -18,6 +26,11 @@ export const AddNewDeckForm = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
+    // Задиспатчили data из формы и в случае успеха, очистили форму
+    dispatch(createDeckTC(data.name)).then(() => {
+      reset()
+    })
+
   }
 
   return (

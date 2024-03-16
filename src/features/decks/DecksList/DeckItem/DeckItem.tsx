@@ -6,7 +6,7 @@ type DeckProps = {
   deck: ItemsResponseType
 }
 
-const TEST_ACC_NAME = 'Darth'
+const TEST_ACC_NAME = 'kukus'
 
 export const DeckItem = memo(({ deck }: DeckProps) => {
   const isTestingDeck = deck.author.name === TEST_ACC_NAME

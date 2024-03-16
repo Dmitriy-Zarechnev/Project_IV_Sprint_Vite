@@ -31,7 +31,7 @@ type PaginationResponseType = {
 }
 
 
-// ----- Объект экземпляр для избежания дублирования ------
+// *********** Объект экземпляр для избежания дублирования **********
 export const instance = axios.create({
   baseURL: 'https://api.flashcards.andrii.es/',
   headers: {
@@ -45,5 +45,11 @@ export const decksAPI = {
   getDecks() {
     return instance.get<SwaggerGetResponseType>(`v2/decks`)
       .then(res => res.data) // getDecksData
+  },
+
+  // ----- Создали deck и отправили на сервер ------
+  createDeck(name: string) {
+    return instance.post<ItemsResponseType>(`v1/decks`, { name })
+      .then(res => res.data) // createDecksData
   },
 }
