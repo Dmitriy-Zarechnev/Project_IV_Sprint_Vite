@@ -1,7 +1,8 @@
 import { AppDispatch } from '../../app/store.ts'
-import {  decksAPI, UpdateDeckType } from './decks-api.ts'
+import { decksAPI, UpdateDeckType } from './decks-api.ts'
 import { createDeckAC, deleteDeckAC, setDecksAC, updateDeckAC } from './decks-reducer.ts'
 import { changeAppStatusAC } from '../../app/app-reducer.ts'
+import { handleErrorFunction } from '../../common/utils/handle-error.ts'
 
 
 // ******** Thunk Creators для decksReducer *********
@@ -76,6 +77,7 @@ export const deleteDeckTC = (id: string) => async (dispatch: AppDispatch) => {
 // ----- Update deck ------
 export const updateDeckTC = (deck: UpdateDeckType) => async (dispatch: AppDispatch) => {
   try {
+
     // Показали Loader во время отправки запроса
     dispatch(changeAppStatusAC('loading'))
 
@@ -88,9 +90,7 @@ export const updateDeckTC = (deck: UpdateDeckType) => async (dispatch: AppDispat
     // Убрали Loader после получения updateDeckData
     dispatch(changeAppStatusAC('succeeded'))
   } catch (error) {
-    // ----- Поймали и вывели в console ошибку ------
-    console.log('updateDeckTC error', error)
-    // Поменяли status при ошибке
-    dispatch(changeAppStatusAC('failed'))
+    handleErrorFunction(error, dispatch)
   }
 }
+

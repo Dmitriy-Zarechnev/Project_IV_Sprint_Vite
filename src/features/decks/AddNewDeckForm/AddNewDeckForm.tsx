@@ -27,7 +27,6 @@ export const AddNewDeckForm = () => {
 
   // ----- onSubmit содержит data из всех форм, после выполнения submit ------
   const onSubmit = (data: FormValues) => {
-    console.log(data)
     // Задиспатчили data из формы и в случае успеха, очистили форму
     dispatch(createDeckTC(data.name)).then(() => {
       reset()

@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
+import { useAppSelector } from '../store.ts'
+import { appErrorSelector } from '../app-selector.ts'
 
 export const GlobalError = () => {
-  const errorMessage = ''
+  // ----- Получили error из state, используя кастомный useAppSelector и appErrorSelector ------
+  const errorMessage = useAppSelector(appErrorSelector)
 
   useEffect(() => {
     if (errorMessage) {
+      debugger
       toast.error(errorMessage)
     }
   }, [errorMessage])
 
-  return <ToastContainer theme="dark" autoClose={3000} />
+  return <ToastContainer position="top-center" autoClose={5000} theme="colored" />
 }

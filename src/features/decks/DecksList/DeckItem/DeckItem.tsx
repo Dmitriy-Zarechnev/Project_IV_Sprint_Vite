@@ -22,7 +22,8 @@ export const DeckItem = memo(({ deck }: DeckProps) => {
   // ----- Используем кастомный useAppDispatch ------
   const dispatch = useAppDispatch()
 
-  // Удаление deck
+
+  // ----- Удаление deck ------
   const handleDeleteButtonClick = () => {
     // Disable кнопки после клика
     setIsLoading(true)
@@ -32,7 +33,8 @@ export const DeckItem = memo(({ deck }: DeckProps) => {
     })
   }
 
-  // Update deck
+
+  // ----- Update deck ------
   const handleEditButtonClick = () => {
     // Disable кнопки после клика
     setIsLoading(true)

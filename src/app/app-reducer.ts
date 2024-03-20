@@ -2,13 +2,16 @@
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 // ----- Типизация Actions ------
-type AppActionsType = ReturnType<typeof changeAppStatusAC>
+type AppActionsType =
+  ReturnType<typeof changeAppStatusAC> |
+  ReturnType<typeof changeAppErrorAC>
 
 // ----- Типизация initialState для appReducer ------
 type AppStateType = typeof initialState
 
 // ----- Константы для Actions ------
 const CHANGE_APP_STATUS = 'APP/CHANGE-APP-STATUS'
+const CHANGE_APP_ERROR = 'APP/CHANGE-APP-ERROR'
 
 // ********** initialState для appReducer **********
 const initialState = {
@@ -21,6 +24,8 @@ export const appReducer = (state: AppStateType = initialState, action: AppAction
   switch (action.type) {
     case CHANGE_APP_STATUS:
       return { ...state, status: action.status }
+    case CHANGE_APP_ERROR:
+      return { ...state, error: action.message }
     default:
       return state
   }
@@ -29,4 +34,7 @@ export const appReducer = (state: AppStateType = initialState, action: AppAction
 // ******** Actions Creators для appReducer *********
 export const changeAppStatusAC = (status: RequestStatusType) => {
   return { type: CHANGE_APP_STATUS, status } as const
+}
+export const changeAppErrorAC = (message: string) => {
+  return { type: CHANGE_APP_ERROR, message } as const
 }
