@@ -1,4 +1,4 @@
-import { AuthorResponseType, ItemsResponseType } from './decks-api.ts'
+import {  ItemsResponseType } from './decks-api.ts'
 
 
 // ----- Типизация Actions ------
@@ -43,7 +43,7 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
     case UPDATE_DECK:
       return {
         ...state,
-        decks: state.decks.map(el => el.id !== action.deck.id ? { ...el, ...action.deck } : el),
+        decks: state.decks.map(el => el.id === action.deck.id ? action.deck  : el),
       }
     default:
       return state
@@ -60,7 +60,7 @@ export const createDeckAC = (deck: ItemsResponseType) => {
 export const deleteDeckAC = (id: string) => {
   return { type: DELETE_DECK, id } as const
 }
-export const updateDeckAC = (deck: AuthorResponseType) => {
+export const updateDeckAC = (deck: ItemsResponseType) => {
   return { type: UPDATE_DECK, deck } as const
 }
 

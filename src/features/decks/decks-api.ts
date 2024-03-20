@@ -29,7 +29,11 @@ type PaginationResponseType = {
   totalPages: number,
   totalItems: number
 }
-
+// Update deck type
+export type UpdateDeckType = {
+  id: string
+  name: string
+}
 
 // *********** Объект экземпляр для избежания дублирования **********
 export const instance = axios.create({
@@ -59,8 +63,8 @@ export const decksAPI = {
       .then(res => res.data) // deleteDeckData
   },
   // ----- Update deck ------
-  updateDeck(deck: AuthorResponseType) {
-    return instance.patch<ItemsResponseType>(`v1/decks/${deck.id}`, { name: deck.name })
+  updateDeck({ id, name }: UpdateDeckType) {
+    return instance.patch<ItemsResponseType>(`v1/decks/${id}`, { name })
       .then(res => res.data) // updateDeckData
   },
 }

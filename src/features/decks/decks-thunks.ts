@@ -1,5 +1,5 @@
 import { AppDispatch } from '../../app/store.ts'
-import { AuthorResponseType, decksAPI } from './decks-api.ts'
+import {  decksAPI, UpdateDeckType } from './decks-api.ts'
 import { createDeckAC, deleteDeckAC, setDecksAC, updateDeckAC } from './decks-reducer.ts'
 import { changeAppStatusAC } from '../../app/app-reducer.ts'
 
@@ -74,7 +74,7 @@ export const deleteDeckTC = (id: string) => async (dispatch: AppDispatch) => {
 }
 
 // ----- Update deck ------
-export const updateDeckTC = (deck: AuthorResponseType) => async (dispatch: AppDispatch) => {
+export const updateDeckTC = (deck: UpdateDeckType) => async (dispatch: AppDispatch) => {
   try {
     // Показали Loader во время отправки запроса
     dispatch(changeAppStatusAC('loading'))
