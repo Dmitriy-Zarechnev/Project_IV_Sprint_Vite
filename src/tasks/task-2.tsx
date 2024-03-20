@@ -1,8 +1,9 @@
-type MyComponentProps = {
-  items: any[]
-  defaultItem: any
+type MyComponentProps<D> = {
+  items: D[]
+  defaultItem: D
 }
-function MyComponent(props: MyComponentProps) {
+
+function MyComponent<D>(props: MyComponentProps<D>) {
   console.log(props)
   return <p>some content</p>
 }
@@ -15,8 +16,8 @@ const App = () => {
 
   return (
     <>
-      <MyComponent items={['react', 'typescript']} defaultItem={9} />
-      <MyComponent items={users} defaultItem={'JUST STRING'} />
+      <MyComponent items={['react', 'typescript']} defaultItem={'9'} />
+      <MyComponent items={users} defaultItem={{ name: 'Sam', age: 43 }} />
     </>
   )
 }
