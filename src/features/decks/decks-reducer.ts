@@ -1,14 +1,19 @@
-import { ItemsResponseType } from './decks-api.ts'
+import { AuthorResponseType, ItemsResponseType } from './decks-api.ts'
 
 
 // ----- Типизация Actions ------
 type DecksActions =
   ReturnType<typeof setDecksAC> |
-  ReturnType<typeof createDeckAC>
+  ReturnType<typeof createDeckAC> |
+  ReturnType<typeof deleteDeckAC> |
+  ReturnType<typeof updateDeckAC>
+
 
 // ----- Константы для Actions ------
-const SET_DECKS = 'decks/SET-DECKS'
-const CREATE_DECK = 'decks/CREATE-DECK'
+const SET_DECKS = 'DECKS/SET-DECKS'
+const CREATE_DECK = 'DECKS/CREATE-DECK'
+const DELETE_DECK = 'DECKS/DELETE-DECK'
+const UPDATE_DECK = 'DECKS/UPDATE-DECK'
 
 
 // ----- Типизация initialState для decksReducer ------
@@ -33,6 +38,13 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
         ...state,
         decks: [action.deck, ...state.decks],
       }
+    case DELETE_DECK:
+      return { ...state, decks: state.decks.filter(el => el.id !== action.id) }
+    case UPDATE_DECK:
+      return {
+        ...state,
+        decks: state.decks.map(el => el.id !== action.deck.id ? { ...el, ...action.deck } : el),
+      }
     default:
       return state
   }
@@ -44,6 +56,12 @@ export const setDecksAC = (decks: ItemsResponseType[]) => {
 }
 export const createDeckAC = (deck: ItemsResponseType) => {
   return { type: CREATE_DECK, deck } as const
+}
+export const deleteDeckAC = (id: string) => {
+  return { type: DELETE_DECK, id } as const
+}
+export const updateDeckAC = (deck: AuthorResponseType) => {
+  return { type: UPDATE_DECK, deck } as const
 }
 
 

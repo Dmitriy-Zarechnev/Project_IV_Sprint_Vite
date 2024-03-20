@@ -1,7 +1,6 @@
-// ----- Запросили decks из state ------
 import { AppRootState } from '../../app/store.ts'
+import { ItemsResponseType } from './decks-api.ts'
 
-// ----- Получили decks из state ------
-export const decksSelector = (state: AppRootState) => {
+export const decksSelector = (state: AppRootState): ItemsResponseType[] => {
   return state.decksReducer.decks
 }

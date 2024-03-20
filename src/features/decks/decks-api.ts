@@ -18,7 +18,7 @@ export type ItemsResponseType = {
   cardsCount: number
 }
 
-type AuthorResponseType = {
+export type AuthorResponseType = {
   id: string,
   name: string
 }
@@ -50,6 +50,17 @@ export const decksAPI = {
   // ----- Создали deck и отправили на сервер ------
   createDeck(name: string) {
     return instance.post<ItemsResponseType>(`v1/decks`, { name })
-      .then(res => res.data) // createDecksData
+      .then(res => res.data) // createDeckData
+  },
+
+  // ----- Удалили deck ------
+  deleteDeck(id: string) {
+    return instance.delete<ItemsResponseType>(`v1/decks/${id}`)
+      .then(res => res.data) // deleteDeckData
+  },
+  // ----- Update deck ------
+  updateDeck(deck: AuthorResponseType) {
+    return instance.patch<ItemsResponseType>(`v1/decks/${deck.id}`, { name: deck.name })
+      .then(res => res.data) // updateDeckData
   },
 }
