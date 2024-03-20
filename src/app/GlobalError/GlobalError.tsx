@@ -9,7 +9,6 @@ export const GlobalError = () => {
 
   useEffect(() => {
     if (errorMessage) {
-      debugger
       toast.error(errorMessage)
     }
   }, [errorMessage])
