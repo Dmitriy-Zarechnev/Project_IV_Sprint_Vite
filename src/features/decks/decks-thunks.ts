@@ -22,10 +22,7 @@ export const getDecksTC = () => async (dispatch: AppDispatch) => {
     // Убрали Loader после получения decks
     dispatch(changeAppStatusAC('succeeded'))
   } catch (error) {
-    // ----- Поймали и вывели в console ошибку ------
-    console.log('getDecksTC error', error)
-    // Поменяли status при ошибке
-    dispatch(changeAppStatusAC('failed'))
+    handleErrorFunction(error, dispatch)
   }
 }
 
@@ -44,10 +41,7 @@ export const createDeckTC = (name: string) => async (dispatch: AppDispatch) => {
     // Убрали Loader после получения createDecksData
     dispatch(changeAppStatusAC('succeeded'))
   } catch (error) {
-    // ----- Поймали и вывели в console ошибку ------
-    console.log('createDeckTC error', error)
-    // Поменяли status при ошибке
-    dispatch(changeAppStatusAC('failed'))
+    handleErrorFunction(error, dispatch)
   }
 }
 
@@ -67,10 +61,7 @@ export const deleteDeckTC = (id: string) => async (dispatch: AppDispatch) => {
     // Убрали Loader после получения deleteDeckData
     dispatch(changeAppStatusAC('succeeded'))
   } catch (error) {
-    // ----- Поймали и вывели в console ошибку ------
-    console.log('deleteDeckTC error', error)
-    // Поменяли status при ошибке
-    dispatch(changeAppStatusAC('failed'))
+    handleErrorFunction(error, dispatch)
   }
 }
 
