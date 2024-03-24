@@ -35,6 +35,6 @@ export const appReducer = (state: AppStateType = initialState, action: AppAction
 export const changeAppStatusAC = (status: RequestStatusType) => {
   return { type: CHANGE_APP_STATUS, status } as const
 }
-export const changeAppErrorAC = (message: string) => {
+export const changeAppErrorAC = (message: string | null) => {
   return { type: CHANGE_APP_ERROR, message } as const
 }

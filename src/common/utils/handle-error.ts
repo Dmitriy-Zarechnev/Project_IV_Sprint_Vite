@@ -11,7 +11,7 @@ type ServerError = {
 // case-2: network error - axios создает ошибку, сообщение можно взять из поля e.message
 // case-3: синхронные ошибки - создается "нативная" JS-ошибка, имеет поле message
 
-export const handleErrorFunction = (error: any, dispatch: AppDispatch) => {
+export const handleErrorFunction = (error: unknown, dispatch: AppDispatch) => {
   // ----- Ошибка ------
   let errorMessage: string
 
